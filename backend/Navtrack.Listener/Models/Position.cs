@@ -32,6 +32,8 @@ public class Position
     public short? GsmSignal { get; set; }
     public double? Odometer { get; set; }
         
+    public int? GpioStatus { get; set; }
+
     public int? MobileCountryCode { get; set; }
     public int? MobileNetworkCode { get; set; }
     public int? LocationAreaCode { get; set; }

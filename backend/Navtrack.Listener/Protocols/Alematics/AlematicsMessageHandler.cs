@@ -12,7 +12,7 @@ public class AlematicsMessageHandler : BaseMessageHandler<AlematicsProtocol>
     public override Position Parse(MessageInput input)
     {
         Match locationMatch =
-            new Regex("(\\d{15})," + // IMEI
+            new Regex("(.*)," + // IMEI
                       "(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})," + // GPS date
                       "(\\d{4})(\\d{2})(\\d{2})(\\d{2})(\\d{2})(\\d{2})," + // Device date
                       "(.*?)," + // Latitude
@@ -31,9 +31,11 @@ public class AlematicsMessageHandler : BaseMessageHandler<AlematicsProtocol>
 
         if (locationMatch.Success)
         {
-		            Console.WriteLine("This is a match {0}, {1}", input.DataMessage.String, locationMatch.Groups[24].Value);
             input.ConnectionContext.SetDevice(locationMatch.Groups[1].Value);
-                
+            string gpioStatus = locationMatch.Groups[21].Value;
+
+		    Console.WriteLine("This is a match {0} with status {1}", input.DataMessage.String, gpioStatus);
+            
             Position position = new()
             {
                 Device = input.ConnectionContext.Device,
@@ -47,6 +49,7 @@ public class AlematicsMessageHandler : BaseMessageHandler<AlematicsProtocol>
                 Altitude = locationMatch.Groups[18].Get<float?>(),
                 HDOP = locationMatch.Groups[19].Get<float?>(),
                 Satellites = locationMatch.Groups[20].Get<short?>(),
+                GpioStatus = locationMatch.Groups[21].Get<int?>(),
                 Odometer = locationMatch.Groups[25].Get<double?>(),
             };
 

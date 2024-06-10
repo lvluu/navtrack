@@ -36,7 +36,7 @@ public class ProtocolMessageHandler(
 
         await connectionRepository.AddMessage(connectionContext.ConnectionId, messageInput.DataMessage.Bytes);
 
-        logger.LogTrace("{ClientProtocol}: received1 {ConvertHexStringArrayToHexString}", connectionContext.Protocol,
+        logger.LogTrace("{ClientProtocol}: received {ConvertHexStringArrayToHexString}", connectionContext.Protocol,
             HexUtil.ConvertHexStringArrayToHexString(messageInput.DataMessage.Hex));
 
         try
