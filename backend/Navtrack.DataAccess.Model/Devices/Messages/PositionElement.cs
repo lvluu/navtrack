@@ -41,6 +41,6 @@ public class PositionElement
     [BsonElement("odo")]
     public double? Odometer { get; set; }
 
-    [BsonElement("status")]
+    [BsonElement("stt")]
     public int? GpioStatus { get; set; }
 }

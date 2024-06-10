@@ -17,7 +17,8 @@ public static class PositionElementMapper
             Altitude = source.Altitude,
             Satellites = source.Satellites,
             HDOP = source.HDOP,
-            Odometer = source.Odometer
+            Odometer = source.Odometer,
+            GpioStatus = source.GpioStatus
         };
 
         return destination;
