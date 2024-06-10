@@ -36,12 +36,17 @@ public class ProtocolMessageHandler(
 
         await connectionRepository.AddMessage(connectionContext.ConnectionId, messageInput.DataMessage.Bytes);
 
-        logger.LogTrace("{ClientProtocol}: received {ConvertHexStringArrayToHexString}", connectionContext.Protocol,
+        logger.LogTrace("{ClientProtocol}: received1 {ConvertHexStringArrayToHexString}", connectionContext.Protocol,
             HexUtil.ConvertHexStringArrayToHexString(messageInput.DataMessage.Hex));
 
         try
         {
-            List<Position>? positions = customMessageHandler.ParseRange(messageInput)?.ToList();
+        logger.LogTrace("Using {Type}: Parsing {DataMessageHex}", customMessageHandler.GetType(),
+            "messageInput.DataMessage.Hex");
+		
+		List<Position>? positions = customMessageHandler.ParseRange(messageInput)?.ToList();
+
+
 
             if (positions is { Count: > 0 } && connectionContext.Device != null)
             {

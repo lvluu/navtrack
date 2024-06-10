@@ -3,7 +3,7 @@ using Navtrack.Listener.Helpers;
 using Navtrack.Listener.Models;
 using Navtrack.Listener.Server;
 using Navtrack.Shared.Library.DI;
-
+using System;
 namespace Navtrack.Listener.Protocols.Alematics;
 
 [Service(typeof(ICustomMessageHandler<AlematicsProtocol>))]
@@ -31,6 +31,7 @@ public class AlematicsMessageHandler : BaseMessageHandler<AlematicsProtocol>
 
         if (locationMatch.Success)
         {
+		            Console.WriteLine("This is a match {0}, {1}", input.DataMessage.String, locationMatch.Groups[24].Value);
             input.ConnectionContext.SetDevice(locationMatch.Groups[1].Value);
                 
             Position position = new()
