@@ -10,6 +10,7 @@ export interface PositionModel {
   altitude?: number | null;
   coordinates: number[];
   date: string;
+  gpioStatus?: number | null;
   gsm?: PositionModelGsm;
   hdop?: number | null;
   heading?: number | null;

@@ -1382,6 +1382,11 @@
             "type": "number",
             "format": "double",
             "nullable": true
+          },
+          "gpioStatus": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         }
       },

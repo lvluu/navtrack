@@ -19,7 +19,8 @@ public static class PositionModelMapper
             HDOP = source.Position.HDOP,
             Valid = source.Position.Valid,
             Odometer = source.Position.Odometer,
-            Gsm = GsmModelMapper.Map(source)
+            Gsm = GsmModelMapper.Map(source),
+            GpioStatus = source.Position.GpioStatus
         };
 
         return position;

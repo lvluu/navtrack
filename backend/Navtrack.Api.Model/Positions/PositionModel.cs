@@ -31,4 +31,6 @@ public class PositionModel
     public bool? Valid { get; set; }
     public GsmModel? Gsm { get; set; }
     public double? Odometer { get; set; }
+
+    public int? GpioStatus { get; set; }
 }
