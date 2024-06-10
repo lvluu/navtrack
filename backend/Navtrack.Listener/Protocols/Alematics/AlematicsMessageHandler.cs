@@ -36,7 +36,7 @@ public class AlematicsMessageHandler : BaseMessageHandler<AlematicsProtocol>
 
 		    Console.WriteLine("This is a match {0} with status {1}", input.DataMessage.String, gpioStatus);
             
-                 position = new()
+            Position position = new()
             {
                 Device = input.ConnectionContext.Device,
                 Date = DateTimeUtil.New(locationMatch.Groups[2].Value, locationMatch.Groups[3].Value,
