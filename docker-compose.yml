@@ -1,18 +1,18 @@
 services:
   web:
-    image: ghcr.io/navtrack/web:latest
+    image: docker.io/luubanroi/web:${TAG:-latest}
     networks:
       - navtrack
     ports:
       - 3000:3000
     restart: unless-stopped
     environment:
-      - NAVTRACK_API_URL=http://localhost:3001
-      - NAVTRACK_LISTENER_HOSTNAME=your.hostname
-      - NAVTRACK_LISTENER_IP=your.ip
+      - NAVTRACK_API_URL=${NAVTRACK_API_URL:-http://149.28.188.165:3001}
+      - NAVTRACK_LISTENER_HOSTNAME=${NAVTRACK_LISTENER_HOSTNAME:-149.28.188.165}
+      - NAVTRACK_LISTENER_IP=${NAVTRACK_LISTENER_IP:-149.28.188.165}
 
   api:
-    image: ghcr.io/navtrack/api:latest
+    image: docker.io/luubanroi/api:${TAG:-latest}
     networks:
       - navtrack
     ports:
@@ -23,7 +23,7 @@ services:
       - "MongoOptions__ConnectionString=mongodb://database"
 
   listener:
-    image: ghcr.io/navtrack/listener:latest
+    image: docker.io/luubanroi/listener:${TAG:-latest}
     networks:
       - navtrack
     ports:
@@ -40,8 +40,8 @@ services:
       - navtrack
     volumes:
       - navtrack:/data/db
-    ports:
-      - 27017:27017
+    # ports:
+    #   - 27017:27017
 
 volumes:
   navtrack:
