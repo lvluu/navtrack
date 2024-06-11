@@ -34,3 +34,23 @@ jobs:
           docker buildx build -t docker.io/luubanroi/web:${{ env.version }} --platform linux/amd64,linux/arm64 -f frontend/Dockerfile --push --provenance=false frontend
           docker buildx build -t docker.io/luubanroi/api:${{ env.version }} --platform linux/amd64,linux/arm64 -f backend/Navtrack.Api/Dockerfile --push --provenance=false .
           docker buildx build -t docker.io/luubanroi/listener:${{ env.version }} --platform linux/amd64,linux/arm64 -f backend/Navtrack.Listener/Dockerfile --push --provenance=false .
+      - name: Redeploy the app
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: ${{ secrets.POC_SERVER_HOST }}
+          port: 22
+          user: ${{ secrets.POC_SERVER_USER }}
+          pass: ${{ secrets.POC_SERVER_PASS }}
+          run: |
+            cd /navtrack
+            git fetch --all
+            git reset --hard origin1/main
+            git pull origin1 main
+
+            git --no-pager branch
+            git --no-pager log --oneline -n 10
+            
+            docker compose config
+            export TAG=${{ env.version }}
+            docker compose pull
+            docker compose up -d
