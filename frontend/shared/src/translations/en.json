@@ -108,6 +108,7 @@
   "generic.google": "Google",
   "generic.group-by": "Group by",
   "generic.hdop": "HDOP",
+  "generic.gpioStatus": "GPIO Status",
   "generic.heading": "Heading",
   "generic.home": "Home",
   "generic.hostname": "Hostname",

@@ -30,7 +30,7 @@ export function PositionBar(props: PositionBarProps) {
         label="generic.longitude"
         value={showCoordinate(props.position.longitude)}
       />
-      <PositionBarItem
+      {/* <PositionBarItem
         label="generic.speed"
         value={showSpeed(props.position.speed)}
       />
@@ -45,6 +45,10 @@ export function PositionBar(props: PositionBarProps) {
       <PositionBarItem
         label="generic.satellites"
         value={showProperty(props.position.satellites)}
+      /> */}
+      <PositionBarItem
+        label="generic.gpioStatus"
+        value={showProperty(props.position?.gpioStatus)}
       />
       <PositionBarItem
         label="generic.hdop"

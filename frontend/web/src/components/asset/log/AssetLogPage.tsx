@@ -44,9 +44,9 @@ export function AssetLogPage() {
         center={
           position
             ? {
-                latitude: position.latitude,
-                longitude: position.longitude
-              }
+              latitude: position.latitude,
+              longitude: position.longitude
+            }
             : undefined
         }
       />
@@ -122,6 +122,12 @@ export function AssetLogPage() {
             row: (row) => `${row.satellites}`,
             sortValue: (row) => row.satellites,
             sortable: true
+          },
+          {
+            labelId: "generic.gpioStatus",
+            row: (row) => row?.gpioStatus ?? "",
+            sortValue: (row) => row?.gpioStatus,
+            sortable: true
           }
         ]}
         rows={query.data?.items}
@@ -134,9 +140,9 @@ export function AssetLogPage() {
             center={
               position
                 ? {
-                    latitude: position.latitude,
-                    longitude: position.longitude
-                  }
+                  latitude: position.latitude,
+                  longitude: position.longitude
+                }
                 : DEFAULT_MAP_CENTER
             }
             initialZoom={14}>
