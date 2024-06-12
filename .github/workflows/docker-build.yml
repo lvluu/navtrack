@@ -42,7 +42,7 @@ jobs:
           user: ${{ secrets.POC_SERVER_USER }}
           pass: ${{ secrets.POC_SERVER_PASS }}
           run: |
-            cd /navtrack
+            cd /root/navtrack
             git fetch --all
             git reset --hard origin1/main
             git pull origin1 main
